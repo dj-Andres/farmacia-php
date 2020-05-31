@@ -20,7 +20,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="../../index3.html" class="nav-link">Home</a>
+        <a href="" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -36,7 +36,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="../../index3.html" class="brand-link">
+    <a href="../vista/adm_catalago.php" class="brand-link">
       <img src="../imagenes/logo.png"
            alt="AdminLTE Logo"
            class="brand-image img-circle elevation-3"
@@ -61,6 +61,15 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+               <li class="nav-header">USUARIO</li>
+          <li class="nav-item">
+            <a href="../vista/editar-datos-personales.php" class="nav-link">
+              <i class="nav-icon fas fa-user-cog"></i>
+              <p>
+                Datos Personales
+              </p>
+            </a>
+          </li>
           <li class="nav-header">EXAMPLES</li>
           <li class="nav-item">
             <a href="../gallery.html" class="nav-link">

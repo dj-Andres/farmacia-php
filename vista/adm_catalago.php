@@ -62,6 +62,6 @@ if($_SESSION['us_tipo']==1){
 <?php
 include_once 'loyout/foter.php';
 }else{
-    header('Location:../vista/login.php');
+    header('Location:../index.php');
 }
 ?>

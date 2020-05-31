@@ -6,25 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Farmacia System</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/estilos.css">
-    <link rel="stylesheet" type="text/css" href="../css/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/css/all.min.css">
 </head>
 <?php
 session_start();
 if(!empty($_SESSION['us_tipo'])){
-    header('Location:../controlador/controlador-login.php');
+    header('Location:controlador/controlador-login.php');
 }else{
     session_destroy();
 ?>
     <body>
-        <img class="wave" src="../imagenes/wave.png" alt="">
+        <img class="wave" src="imagenes/wave.png" alt="">
         <div class="contenedor">
             <div class="img">
-                <img src="../imagenes/bg.svg" alt="">
+                <img src="imagenes/bg.svg" alt="">
             </div>
             <div class="contenido-login">
-                <form action="../controlador/controlador-login.php" method="POST">
-                    <img src="../imagenes/logo.png" alt="">
+                <form action="controlador/controlador-login.php" method="POST">
+                    <img src="imagenes/logo.png" alt="">
                     <h2>System Farmacia</h2>
                     <div class="input-div dni">
                         <div class="i">
@@ -50,7 +50,7 @@ if(!empty($_SESSION['us_tipo'])){
             </div>
         </div>
     </body>
-    <script src="../js/login.js"></script>
+    <script src="js/login.js"></script>
     </html>
 <?php
 }
