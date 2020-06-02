@@ -38,18 +38,19 @@ if($_SESSION['us_tipo']==1){
                         <div class="card card-success card-outline">
                             <div class="card-body box-profile">
                                 <div class="text-center">
+                                    <input id="Id_usuario" type="hidden" value="<?php  echo $_SESSION['usuario'];?>">
                                     <img src="../imagenes/avatar.png" alt="" class="profile-user-img img-fluid img-circle">
-                                    <h3 class="profile-username text-center text-success">Nombre:</h3>
-                                    <p class="text-muted text-center">Apellido:</p>
+                                    <h3 class="profile-username text-center text-success" id="nombre">Nombre:</h3>
+                                    <p class="text-muted text-center" id="apellido">Apellido:</p>
                                     <ul class="list-group list-group-unbordered mb-3">
                                     <li class="list-group-item">
-                                            <b style="color:#0B7300">Edad:</b><a class="float-rigth">24</a>
+                                            <b style="color:#0B7300">Edad:</b><a class="float-rigth" id="edad"></a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b style="color:#0B7300">Cedula:</b><a class="float-rigth">0707012605</a>
+                                            <b style="color:#0B7300">Cedula:</b><a class="float-rigth" id="cedula"></a>
                                         </li>
                                         <li class="list-group-item">
-                                            <b style="color:#0B7300">Tipo Ususario:</b><a class="float-rigth">Administrador</a>
+                                            <b style="color:#0B7300">Tipo Ususario:</b><a class="float-rigth" id="us_tipo">Administrador</a>
                                             <spam class="float-rigth badge badge-primary"></spam>
                                         </li>
                                     </ul>
@@ -65,28 +66,28 @@ if($_SESSION['us_tipo']==1){
                             <strong style="color:#0B7300">
                                 <i class="fas fa-phone mr-1"></i>Telefono
                             </strong>
-                            <p class="text-center">0992294342</p>
+                            <p class="text-center" id="telefono">0992294342</p>
 
                             <strong style="color:#0B7300">
                                 <i class="fas fa-map-market-alt mr-1"></i>Residencia
                             </strong>
-                            <p class="text-center">0992294342</p>
+                            <p class="text-center" id="residencia">0992294342</p>
 
                             <strong style="color:#0B7300">
                                 <i class="fas fa-map-alt mr-1"></i>Email
                             </strong>
-                            <p class="text-center">andres96jimenez@gmail.com</p>
+                            <p class="text-center" id="correo">andres96jimenez@gmail.com</p>
 
                             <strong style="color:#0B7300">
                                 <i class="fas fa-smile-wink mr-1"></i>Sexo
                             </strong>
-                            <p class="text-center">andres96jimenez@gmail.com</p>
+                            <p class="text-center" id="sexo">andres96jimenez@gmail.com</p>
                         </div>
 
                         <strong style="color:#0B7300">
-                                <i class="fas fa-pencil-alt mr-1"></i>Información
+                                <i class="fas fa-pencil-alt mr-1"></i>Información adicional
                             </strong>
-                            <p class="text-center">andres96jimenez@gmail.com</p>
+                            <p class="text-center" id="adicioanl-use">andres96jimenez@gmail.com</p>
                             <button class="btn btn-block bg-grandient-danger">Editar</button>
                         <div class="card-footer">
                             <p class="text-muted">Click en el botón que desea editar</p>
@@ -154,3 +155,4 @@ include_once 'loyout/foter.php';
     header('Location:../index.php');
 }
 ?>
+<script src="../js/usuario.js"></script>

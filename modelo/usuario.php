@@ -18,6 +18,13 @@ include_once'conexion.php';
                 $this->objetos = $query->fetchall();
                 return $this->objetos;
                 }
+                function obtener_datos($id){
+                    $sql="SELECT * FROM usuario  join tipo_us on us_tipo=Id_tipo_us  AND Id_usuario=:id";
+                    $query=$this->acceso->prepare($sql);
+                    $query->execute(array(':id' =>$id));
+                    $this->objetos = $query->fetchall();
+                    return $this->objetos;
+                    }
         }
 
 
