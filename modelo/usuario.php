@@ -5,18 +5,18 @@ include_once'conexion.php';
         class usuario{
         
             var $objetos;
-            //es el metodo del al clase
+            //es el metodo del la clase
                 public function __construct()
                 {
                     $db=new conexion();
                     $this->acceso=$db->pdo;
                 }
                 function logear($dni,$pass){
-                $sql="SELECT * FROM usuario inner join tipo_us on us_tipo=Id_tipo_us WHERE cedula=:dni and clave=:pass";
-                $query=$this->acceso->prepare($sql);
-                $query->execute(array(':dni' =>$dni ,':pass'=>$pass));
-                $this->objetos = $query->fetchall();
-                return $this->objetos;
+                    $sql="SELECT * FROM usuario inner join tipo_us on us_tipo=Id_tipo_us WHERE cedula=:dni and clave=:pass";
+                    $query=$this->acceso->prepare($sql);
+                    $query->execute(array(':dni' =>$dni ,':pass'=>$pass));
+                    $this->objetos = $query->fetchall();
+                    return $this->objetos;
                 }
                 function obtener_datos($id){
                     $sql="SELECT * FROM usuario  join tipo_us on us_tipo=Id_tipo_us  AND Id_usuario=:id";
@@ -24,7 +24,12 @@ include_once'conexion.php';
                     $query->execute(array(':id' =>$id));
                     $this->objetos = $query->fetchall();
                     return $this->objetos;
-                    }
+                }
+                function actualizar_usuario($Id_usuario,$telefono,$resedencia,$correo,$sexo,$adiconal){
+                    $sql="UPDATE usuario SET telefono=:telefono,residencia=:residencia,correo=:correo,sexo=:sexo,adicional=:adicional WHERE Id_usuario=:Id_usuario";
+                    $query=$this->acceso->prepare($sql);
+                    $query->execute(array(':Id_usuario'=>$Id_usuario,':residencia'=>$resedencia,':telefono'=>$telefono,':correo'=>$correo,':sexo'=>$sexo,':adicional'=>$adiconal));
+                }
         }
 
 

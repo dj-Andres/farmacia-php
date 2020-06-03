@@ -88,7 +88,7 @@ if($_SESSION['us_tipo']==1){
                                 <i class="fas fa-pencil-alt mr-1"></i>Información adicional
                             </strong>
                             <p class="text-center" id="adicioanl-use">andres96jimenez@gmail.com</p>
-                            <button class="btn btn-block bg-grandient-danger">Editar</button>
+                            <button class="edit btn btn-block bg-grandient-danger">Editar</button>
                         <div class="card-footer">
                             <p class="text-muted">Click en el botón que desea editar</p>
                         </div>
@@ -99,7 +99,13 @@ if($_SESSION['us_tipo']==1){
                                 <h3 class="card-title">Editar los datos que desea editar</h3>
                             </div>
                             <div class="card-body">
-                                <form class="form-horizontal">
+                                <div class="alert alert-success text-center" id="editado" style="display:none;">
+                                        <span><i class="fas fa-check m-1"></i>Editado</span>
+                                </div>
+                                <div class="alert alert-danger text-center" id="no-editado" style="display:none;">
+                                        <span><i class="fas fa-times m-1"></i>No se pudo editar</span>
+                                </div>
+                                <form id="form-usuario" class="form-horizontal">
                                     <div class="form-group row">
                                         <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
                                         <div class="col-sm-10">
