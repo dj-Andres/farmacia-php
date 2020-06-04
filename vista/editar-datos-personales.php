@@ -8,8 +8,97 @@ if($_SESSION['us_tipo']==1){
     <?php 
         include_once 'loyout/navegacion.php';
     ?>
-  
+    
+    <!--Modal de cambiar la contraseña-->
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="cambio-contrasena" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cambiar la clave del usuario</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <img id="avatar3" src="../imagenes/avatar.png" class="profile-user-img img-fluid img-circle">
+            </div>
+            <div class="text-center">
+                <b>
+                    <?php echo $_SESSION['nombre'];?>
+                </b>
+            </div>
+            <!--Alertas de contraseña-->
+            <div class="alert alert-success text-center" id="actualizado" style="display:none;">
+                <span><i class="fas fa-check m-1"></i>Se cambio la contraseña correctamente</span>
+            </div>
+            <div class="alert alert-danger text-center" id="no-actualizado" style="display:none;">
+                <span><i class="fas fa-times m-1"></i>La contraseña no es la correctamente</span>
+            </div>
+            <form id="form-clave">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                    </div>
+                    <input class="form-control" type="password" placeholder="Ingresar su contraseña actual" id="clave-vieja">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-unlock"></i></span>
+                    </div>
+                    <input class="form-control" type="text" placeholder="Ingresar la nueva contraseña" id="clave-nueva">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
 
+    <div class="modal fade" id="cambio-avatar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cambiar foto</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <img id="avatar1" src="../imagenes/avatar.png" class="profile-user-img img-fluid img-circle">
+            </div>
+            <div class="text-center">
+                <b>
+                    <?php echo $_SESSION['nombre'];?>
+                </b>
+            </div>
+            <!--Alertas de contraseña-->
+            <div class="alert alert-success text-center" id="update" style="display:none;">
+                <span><i class="fas fa-check m-1"></i>Se cambio la foto</span>
+            </div>
+            <div class="alert alert-danger text-center" id="no-update" style="display:none;">
+                <span><i class="fas fa-times m-1"></i>Formato no soportado</span>
+            </div>
+            <form id="form-foto" enctype="multipart/form-data">
+                <div class="input-group mb-3 ml-5 mt-2">
+                    <input type="file"  class="input-group" name="foto">
+                    <input type="hidden" name="funcion" value="cambiar_foto">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -37,9 +126,13 @@ if($_SESSION['us_tipo']==1){
                     <div class="col-md-3">
                         <div class="card card-success card-outline">
                             <div class="card-body box-profile">
-                                <div class="text-center">
+                                    <div class="text-center">
+                                        <img id="avatar2" src="../imagenes/avatar.png" alt="" class="profile-user-img img-fluid img-circle">
+                                    </div>
+                                    <div class="text-center">
+                                        <button  type="button" data-toggle="modal" data-target="#cambio-avatar" class="btn btn-primary btn-sm mt-1">Cambiar el avatar</button>
+                                    </div>
                                     <input id="Id_usuario" type="hidden" value="<?php  echo $_SESSION['usuario'];?>">
-                                    <img src="../imagenes/avatar.png" alt="" class="profile-user-img img-fluid img-circle">
                                     <h3 class="profile-username text-center text-success" id="nombre">Nombre:</h3>
                                     <p class="text-muted text-center" id="apellido">Apellido:</p>
                                     <ul class="list-group list-group-unbordered mb-3">
@@ -53,6 +146,7 @@ if($_SESSION['us_tipo']==1){
                                             <b style="color:#0B7300">Tipo Ususario:</b><a class="float-rigth" id="us_tipo">Administrador</a>
                                             <spam class="float-rigth badge badge-primary"></spam>
                                         </li>
+                                        <button type="button" class="btn btn-block btn-outline-warning btn-sm" data-toggle="modal" data-target="#cambio-contrasena">Cambiar clave</button>
                                     </ul>
                                 </div>
                             </div>

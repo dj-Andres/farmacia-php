@@ -21,6 +21,7 @@ $(document).ready(function(){
             let correo='';
             let sexo='';
             let adicional='';
+            let avatar='';
             //let tipo_usuario='';
             //JSON.parse convierte  el json encode del controlador y convierte a int al string del controlador//
             const usuario=JSON.parse(response);
@@ -35,6 +36,7 @@ $(document).ready(function(){
             coreeo+=`${usuario.correo}`;
             sexo+=`${usuario.sexo}`;
             adicional+=`${usuario.adicional}`;
+            avatar+=`${usuario.avatar}`;
             // se pasara los datos a la plantilla//
             $('#nombre').html(nombre);
             $('apellido').html(apellido);
@@ -45,7 +47,12 @@ $(document).ready(function(){
             $('#sexo').html(sexo);
             $('#correo').html(correo);
             $('#residencia').html(residencia);
+            $('#avatar1').attr('src',usuario.avatar);
+            $('#avatar2').attr('src',usuario.avatar);
+            $('#avatar3').attr('src',usuario.avatar);
+            $('#avatar4').attr('src',usuario.avatar);
             $('#adicional').html(adicional);
+            
         })
     }
     // el evento  ON es para capturar una clase  se coloca . cuando son ID se coloca#//
@@ -97,4 +104,56 @@ $(document).ready(function(){
         // elimino la funcion del boton//
         e.preventDefault();
     });
+    //para cambiar la clave del usuario se usa el submit para capturar los datos//
+    $('#form-clave').submit(e=>{
+        let vieja_clave=$('#clave-vieja').val();
+        let nueva_clave=$('#clave-nueva').val();
+        //console.log(vieja_clave + nueva_clave);
+        // es para que no se refresco los valores del inputs//
+        funcion='cambiar_clave';
+        $.post('../controlador/usuario-controlador.php',{Id_usuario,funcion,vieja_clave,nueva_clave},(response)=>{
+            //console.log(response);
+            if (response=='actualizado') {
+                    $('#actualizado').hide('slow');
+                    $('#actualizado').show(1000);
+                    $('#actualizado').hide(2000);
+                    $('#form-clave').trigger('reset');
+            }else{
+                $('#no-actualizado').hide('slow');
+                $('#no-actualizado').show(1000);
+                $('#no-actualizado').hide(2000);
+                $('#form-clave').trigger('reset');
+            }
+        })
+        e.preventDefault();
+    })
+    $('#form-foto').submit(e=>{
+        let formData=new FormData($('#form-foto')[0]);
+        $.ajax({
+            url:'../controlador/usuario-controlador.php',
+            type:'POST',
+            data:formData,
+            cache:false,
+            processData:false,
+            contentType:false
+        }).done(function(response){
+            console.log(response);
+            const json=JSON.parse(response);
+            if (json.alert=='editado') {
+                $('#avatar1').attr('src',json.ruta);
+                $('#update').hide('slow');
+                $('#update').show(1000);
+                $('#update').hide(2000);
+                $('#form-foto').trigger('reset');
+                buscar_usuario(Id_usuario);    
+            }else{
+                $('#no-update').hide('slow');
+                $('#no-update').show(1000);
+                $('#no-update').hide(2000);
+                $('#form-foto').trigger('reset');    
+            }
+            
+        });
+        e.preventDefault();
+    })
 })
