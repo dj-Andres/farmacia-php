@@ -62,23 +62,31 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-header">USUARIO</li>
-          <li class="nav-item">
-            <a href="../vista/editar-datos-personales.php" class="nav-link">
-              <i class="nav-icon fas fa-user-cog"></i>
-              <p>
-                Datos Personales
-              </p>
-            </a>
-          </li>
-          <li class="nav-header">EXAMPLES</li>
-          <li class="nav-item">
-            <a href="../gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li>
+              <li class="nav-item">
+                <a href="editar-datos-personales.php" class="nav-link">
+                  <i class="nav-icon fas fa-user-cog"></i>
+                  <p>
+                    Datos Personales
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adm_usuario.php" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Gestión Usuario
+                  </p>
+                </a>
+              </li>
+              <li class="nav-header">EXAMPLES</li>
+              <li class="nav-item">
+                <a href="../gallery.html" class="nav-link">
+                  <i class="nav-icon far fa-image"></i>
+                  <p>
+                    Gallery
+                  </p>
+                </a>
+              </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

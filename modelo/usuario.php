@@ -57,9 +57,22 @@ include_once'conexion.php';
                     return $this->objetos;
                     
                 }
+                function buscar(){
+                    if(!empty($_POST['sql'])){
+                        $sql=$_POST['sql'];
+                        $sql="SELECT * FROM usuario join tipo_us on us_tipo=Id_tipo_us WHERE nombre LIKE :sql";
+                        $query=$this->acceso->prepare($sql);
+                        $query->execute(array(':sql'=>"%$sql%"));
+                        $this->objetos=$query->fetchall();
+                        return $this->objetos;
+                    }else{
+                        $sql="SELECT * FROM usuario join tipo_us on us_tipo=Id_tipo_us WHERE nombre NOT LIKE ''ORDER BY Id_usuario LIMIT 15";
+                        $query=$this->acceso->prepare($sql);
+                        $query->execute();
+                        $this->objetos=$query->fetchall();
+                        return $this->objetos;
+                    }
+                }
         }
-
-
-    
 
 ?>

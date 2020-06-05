@@ -99,4 +99,32 @@ include_once '../modelo/usuario.php';
         echo $jsonstring;
       }
     }
+
+    if ($_POST['funcion']=='buscar_usuarios_adm') {
+      $json=array();
+      $fecha_actual=new DateTime();
+      $usuario->buscar();
+      foreach($usuario->objetos as $objeto){
+        $naciiento=new DateTime($objeto->edad);
+        //comparacion de la fecha actual con la fecha de nacimiento//
+        $edad=$naciiento->diff($fecha_actual);
+        $edad_año=$edad->y;
+        $json[]=array(
+            //el ultimo nombre es la columna de la tabla usuario//
+                'nombre'=>$objeto->nombre,
+                'apellido'=>$objeto->apellido,
+                'edad'=>$edad_año,
+                'cedula'=>$objeto->cedula,
+                'tipo_usuario'=>$objeto->nombre_tipo,
+                'telefono'=>$objeto->telefono,
+                'residencia'=>$objeto->residencia,
+                'correo'=>$objeto->correo,
+                'sexo'=>$objeto->sexo,
+                'adicional'=>$objeto->adicional,
+                'avatar'=>'../imagenes/'.$objeto->avatar
+        );
+      }
+        $jsonstring=json_encode($json);
+        echo $jsonstring;
+  }
 ?>
