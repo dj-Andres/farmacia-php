@@ -121,10 +121,23 @@ include_once '../modelo/usuario.php';
                 'correo'=>$objeto->correo,
                 'sexo'=>$objeto->sexo,
                 'adicional'=>$objeto->adicional,
-                'avatar'=>'../imagenes/'.$objeto->avatar
+                'avatar'=>'../imagenes/'.$objeto->avatar,
+                'tipo_us'=>$objeto->us_tipo
         );
       }
         $jsonstring=json_encode($json);
         echo $jsonstring;
-  }
+    }
+
+    if ($_POST['funcion']=='crear-usuario') {
+        $nombre=$_POST['nombre'];
+        $apellido=$_POST['apellido'];
+        $cedula=$_POST['cedula'];
+        $nacimiento=$_POST['nacimiento'];
+        $clave=$_POST['clave'];
+        $tipo=2;
+        $avatar='avatar.png';
+        $usuario->crear($nombre,$apellido,$cedula,$naciiento,$clave,$tipo,$avatar);
+
+    }
 ?>

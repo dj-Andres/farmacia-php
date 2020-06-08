@@ -1,6 +1,6 @@
 <?php
 session_start();
-if($_SESSION['us_tipo']==1){
+if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
     include_once 'loyout/header.php';
 ?>
   <title>FarmaciaSystem</title>
@@ -20,6 +20,14 @@ if($_SESSION['us_tipo']==1){
                     </button>
                 </div>
                 <div class="card-body">
+                    <!--ALERTAS-->
+                    <div class="alert alert-success text-center" id="crear" style="display:none;">
+                        <span><i class="fas fa-check m-1"></i>Se creo exitosamento el usuario</span>
+                    </div>
+                    <div class="alert alert-danger text-center" id="nocrear" style="display:none;">
+                        <span><i class="fas fa-times m-1"></i>El usuario ya existe</span>
+                    </div>
+                    <!--FIN-ALERTAS-->
                     <form id="form-crear">
                         <div class="form-group">
                             <label for="nombre">Nombres:</label>
@@ -60,7 +68,8 @@ if($_SESSION['us_tipo']==1){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Gestión Usuarios <button type="button" data-toggle="modal" data-target="#crear-usuario" class="btn bg-gradient-primary ml-2">Crear usuario</button> </h1>
+            <h1>Gestión Usuarios <button type="button" data-toggle="modal" data-target="#crear-usuario" class="btn bg-gradient-primary ml-2" id="boton-crear">Crear usuario</button> </h1>
+            <input type="hidden" id="tipo_usuario" value="<?php  echo $_SESSION['us_tipo'];?>">
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">

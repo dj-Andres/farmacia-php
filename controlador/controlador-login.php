@@ -15,6 +15,10 @@
                 case '2':
                     header('Location:../vista/tecnico_catalogo.php');
                 break;
+
+                case '3':
+                    header('Location:../vista/adm_catalogo.php');
+                break;
         }
     }else{
         if(!empty($usuario->objetos)){
@@ -33,6 +37,10 @@
                 
                     case '2':
                         header('Location:../vista/tecnico_catalogo.php');
+                    break;
+                    
+                    case '3':
+                        header('Location:../vista/adm_catalogo.php');
                     break;
             }
         }else{

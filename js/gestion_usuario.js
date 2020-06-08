@@ -1,4 +1,9 @@
 $(document).ready(function(){
+    var tipo_usuario=$('#tipo_usuario').val();
+    //console.log(tipo_usuario);
+    if(tipo_usuario==2){
+        $('#boton-crear').hide();
+    }
     buscar_datos();
     var funcion;
     function buscar_datos(sql) {
@@ -33,10 +38,34 @@ $(document).ready(function(){
                             </div>
                         </div>
                         <div class="card-footer">
-                            <div class="text-right">
-                                <button class="btn btn-danger">
-                                    <i class"fas fa-window-close mr-1"></i>Eliminar
-                                </button>
+                            <div class="text-right">`;
+                            if (tipo_usuario==3) {
+                                if(usuario.tipo_us!=3){
+                                    //concateno variables//
+                                    templete+=`
+                                    <button class="btn btn-danger mr-1">
+                                        <i class"fas fa-window-close mr-1"></i>Eliminar
+                                    </button>
+                                    `;                                    
+                                }
+                                if(usuario.tipo_us==2){
+                                    templete+=`
+                                    <button class="btn btn-primary ml-1">
+                                        <i class"fas fa-window-close mr-1"></i>Ascender
+                                    </button>
+                                    `;                                    
+                                }
+                            }else{
+                                if(tipo_usuario==1 && usuario.tipo_us!=1 && usuario.tipo_us!=3){
+                                    templete+=`
+                                    <button class="btn btn-danger">
+                                        <i class"fas fa-window-close mr-1"></i>Eliminar
+                                    </button>
+                                    `;                                    
+                                }
+
+                            }
+                            templete+=` 
                             </div>
                         </div>
                         </div>
@@ -53,5 +82,29 @@ $(document).ready(function(){
         }else{
             buscar_datos();
         }
+    });
+    $('#form-crear').submit(e=>{
+        let nombre=$('#nombre').val();
+        let apellido=$('#apellido').val();
+        let nacimiento=$('#nacimiento').val();
+        let cedula=$('#cedula').val();
+        let clave=$('#clave').val();
+        funcion='crear-usuario';
+        $.post('../controlador/usuario-controlador.php'{nombre,apellido,nacimiento,cedula,clave,funcion},(response)=>{
+            console.log(response);
+            if(response==crear){
+                $('#crear').hide('slow');
+                $('#crear').show(1000);
+                $('#crear').hide(2000);
+                $('#form-crear').trigger('reset');
+                buscar_datos();
+            }else{
+                $('#nocrear').hide('slow');
+                $('#nocrear').show(1000);
+                $('#nocrear').hide(2000);
+                $('#form-crear').trigger('reset');
+            }
+        });
+        e.preventDefault();
     });
 })

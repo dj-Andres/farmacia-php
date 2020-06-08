@@ -73,6 +73,20 @@ include_once'conexion.php';
                         return $this->objetos;
                     }
                 }
+                function crear($nombre,$apellido,$cedula,$naciiento,$clave,$tipo,$avatar){
+                    $sql="SELECT Id_usuario FROM usuario  WHERE cedula=:cedula";
+                    $query=$this->acceso->prepare($sql);
+                    $query->execute(array(':cedula'=>$cedula));
+                    $this->objetos=$query->fetchall();
+                    if(!empty($this->objetos)){
+                        echo 'nocrear';                      
+                    }else{
+                        $sql="INSERT INTO usuario(cedula,nombre,apellido,edad,clave,avatar,us_tipo) VALUES(:cedula,:nombre,:apllido,:nacimiento,:clave,:avatar,:tipo)";
+                        $query=$this->acceso->prepare($sql);
+                        $query->execute(array(':cedula'=>$cedula,':nombre'=>$nombre,':apellido'=>$apellido,':nacimiento'=>$naciiento,':clave'=>$clave,':avatar'=>$avatar,':tipo'=>$tipo));
+                        echo 'crear';
+                    }
+                }
         }
 
 ?>
