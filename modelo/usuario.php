@@ -87,6 +87,38 @@ include_once'conexion.php';
                         echo 'crear';
                     }
                 }
+                function ascender($clave,$Id_ascendido,$Id_usuario){
+                    $sql="SELECT Id_usuario FROM usuario  WHERE Id_usuario=:Id_usuario AND clave=:clave";
+                    $query=$this->acceso->prepare($sql);
+                    $query->execute(array(':Id_usuario'=>$Id_usuario,':clave'=>$clave));
+                    $this->objetos=$query->fetchall();
+                    if(!empty($this->objetos)){
+                        $tipo=1;
+                        $sql="UPDATE usuario set us_tipo=:tipo WHERE Id_usuario=:Id";
+                        $query=$this->acceso->prepare($sql);
+                        $query->execute(array(':Id'=>$Id_ascendido,':tipo'=>$tipo));
+                        $this->objetos=$query->fetchall();
+                        echo 'ascendido';
+                    }else{
+                        echo 'no-ascendido';
+                    }
+                }
+                function descender($clave,$Id_descendido,$Id_usuario){
+                    $sql="SELECT Id_usuario FROM usuario  WHERE Id_usuario=:Id_usuario AND clave=:clave";
+                    $query=$this->acceso->prepare($sql);
+                    $query->execute(array(':Id_usuario'=>$Id_usuario,':clave'=>$clave));
+                    $this->objetos=$query->fetchall();
+                    if(!empty($this->objetos)){
+                        $tipo=2;
+                        $sql="UPDATE usuario set us_tipo=:tipo WHERE Id_usuario=:Id";
+                        $query=$this->acceso->prepare($sql);
+                        $query->execute(array(':Id'=>$Id_descendido,':tipo'=>$tipo));
+                        $this->objetos=$query->fetchall();
+                        echo 'descendido';
+                    }else{
+                        echo 'no-descendido';
+                    }
+                }
         }
 
 ?>

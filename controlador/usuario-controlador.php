@@ -111,6 +111,7 @@ include_once '../modelo/usuario.php';
         $edad_año=$edad->y;
         $json[]=array(
             //el ultimo nombre es la columna de la tabla usuario//
+                'Id_usuario'=>$objeto->Id_usuario,
                 'nombre'=>$objeto->nombre,
                 'apellido'=>$objeto->apellido,
                 'edad'=>$edad_año,
@@ -139,5 +140,15 @@ include_once '../modelo/usuario.php';
         $avatar='avatar.png';
         $usuario->crear($nombre,$apellido,$cedula,$naciiento,$clave,$tipo,$avatar);
 
+    }
+    if ($_POST['funcion']=='ascender') {
+        $clave=$_POST['clave'];
+        $Id_ascendido=$_POST['Id_usuario'];
+        $usuario->ascender($clave,$Id_ascendido,$Id_usuario);
+    }
+    if ($_POST['funcion']=='descender') {
+      $clave=$_POST['clave'];
+      $Id_descendido=$_POST['Id_usuario'];
+      $usuario->descender($clave,$Id_descendido,$Id_usuario);
     }
 ?>
