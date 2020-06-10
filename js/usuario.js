@@ -30,7 +30,16 @@ $(document).ready(function(){
             apellido+=`${usuario.apellido}`;
             edad+=`${usuario.edad}`;
             cedula+=`${usuario.cedula}`;
-            tipo+=`${usuario.tipo}`;
+            //tipo+=`${usuario.tipo}`;
+            if(usuario.tipo_usuario=='ROOT'){
+                tipo+=`<h1 class="badge badge-danger">${usuario.tipo_usuario}</h1>`;
+            }
+            if(usuario.tipo_usuario=='TECNICO'){
+                tipo+=`<h1 class="badge badge-warning">${usuario.tipo_usuario}</h1>`;
+            }                            
+            if(usuario.tipo_usuario=='ADMINISTRADOR'){
+                tipo+=`<h1 class="badge badge-info">${usuario.tipo_usuario}</h1>`;
+            }                                          
             telefono+=`${usuario.telefono}`;
             residencia+=`${usuario.residencia}`;
             coreeo+=`${usuario.correo}`;

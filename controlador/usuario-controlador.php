@@ -151,4 +151,9 @@ include_once '../modelo/usuario.php';
       $Id_descendido=$_POST['Id_usuario'];
       $usuario->descender($clave,$Id_descendido,$Id_usuario);
     }
+    if ($_POST['funcion']=='borrar_usuario') {
+      $clave=$_POST['clave'];
+      $Id_borrado=$_POST['Id_usuario'];
+      $usuario->borrar($clave,$Id_borrado,$Id_usuario);
+    }
 ?>

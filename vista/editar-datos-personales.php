@@ -144,7 +144,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                         </li>
                                         <li class="list-group-item">
                                             <b style="color:#0B7300">Tipo Ususario:</b><a class="float-rigth" id="us_tipo">Administrador</a>
-                                            <spam class="float-rigth badge badge-primary"></spam>
+                                            <spam class="float-rigth"></spam>
                                         </li>
                                         <button type="button" class="btn btn-block btn-outline-warning btn-sm" data-toggle="modal" data-target="#cambio-contrasena">Cambiar clave</button>
                                     </ul>

@@ -6,6 +6,7 @@ $(document).ready(function(){
     }
     buscar_datos();
     var funcion;
+    //funcion para cargar los datos en la plantilla de usuarios//
     function buscar_datos(sql) {
         funcion='buscar_usuarios_adm';
         $.post('../controlador/usuario-controlador.php',{sql,funcion},(response)=>{
@@ -16,9 +17,17 @@ $(document).ready(function(){
                 templete+=`
                         <div usuarioID="${usuario.Id_usuario}" class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch">
                         <div class="card bg-light">
-                        <div class="card-header text-muted border-bottom-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                            ${usuario.tipo_usuario}                            
-                        </font></font></div>
+                        <div class="card-header text-muted border-bottom-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">`;
+                        if(usuario.tipo_usuario==3){
+                            templete+=`<h1 class="badge badge-danger">${usuario.tipo_usuario}</h1>`;
+                        }
+                        if(usuario.tipo_usuario==2){
+                            templete+=`<h1 class="badge badge-warning">${usuario.tipo_usuario}</h1>`;
+                        }                            
+                        if(usuario.tipo_usuario==1){
+                            templete+=`<h1 class="badge badge-info">${usuario.tipo_usuario}</h1>`;
+                        }                                          
+                        templete+=` </font></font></div>
                         <div class="card-body pt-0">
                             <div class="row">
                             <div class="col-7">
@@ -43,7 +52,7 @@ $(document).ready(function(){
                                 if(usuario.tipo_us!=3){
                                     //concateno variables//
                                     templete+=`
-                                    <button class="btn btn-danger mr-1">
+                                    <button class="borrar-usuario btn btn-danger mr-1" type="button" data-toggle="modal" data-target="#confirmar">
                                         <i class"fas fa-sort-amount-up mr-1"></i>Eliminar
                                     </button>
                                     `;                                    
@@ -65,7 +74,7 @@ $(document).ready(function(){
                             }else{
                                 if(tipo_usuario==1 && usuario.tipo_us!=1 && usuario.tipo_us!=3){
                                     templete+=`
-                                    <button class="btn btn-danger">
+                                    <button class="borrar-usuario btn btn-danger" type="button" data-toggle="modal" data-target="#confirmar">
                                         <i class"fas fa-window-close mr-1"></i>Eliminar
                                     </button>
                                     `;                                    
@@ -82,6 +91,7 @@ $(document).ready(function(){
             $('#usuarios').html(templete);
         });
     }
+    //funcion de busqueda en el input//
     $(document).on('keyup','#buscar',function(){
         let valor=$(this).val();
         if(valor !=""){
@@ -90,6 +100,7 @@ $(document).ready(function(){
             buscar_datos();
         }
     });
+    //funcion para crear a usuarios//
     $('#form-crear').submit(e=>{
         let nombre=$('#nombre').val();
         let apellido=$('#apellido').val();
@@ -133,6 +144,16 @@ $(document).ready(function(){
         $('#Id_usuario').val(ID);
         $('#funcion').val(funcion);
     });
+    // borrar-usuario//
+    $(document).on('click','.borrar-usuario',(e)=>{
+        const elemento=$(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        //console.log(elemento);
+        const ID=$(elemento).attr(usuarioID);
+        //console.log(ID);
+        funcion='borrar_usuario';
+        $('#Id_usuario').val(ID);
+        $('#funcion').val(funcion);
+    });
     $('#form-confirmar').submit(e=>{
         let clave=$('#clave-vieja').val();
         let Id_usuario=$('#Id_usuario').val();
@@ -142,7 +163,7 @@ $(document).ready(function(){
         //console.log(funcion);
         $.post('../controlador/usuario-controlador.php',{clave,Id_usuario,funcion},(response)=>{
             //console.log(response);
-            if(response=='ascendido' || response=='descendido'){
+            if(response=='ascendido' || response=='descendido' || response=='borrado'){
                 $('#confirmado').hide('slow');
                 $('#confirmado').show(1000);
                 $('#confirmado').hide(2000);

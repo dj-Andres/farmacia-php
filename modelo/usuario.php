@@ -119,6 +119,21 @@ include_once'conexion.php';
                         echo 'no-descendido';
                     }
                 }
+                function borrar($clave,$Id_borrado,$Id_usuario){
+                    $sql="SELECT Id_usuario FROM usuario  WHERE Id_usuario=:Id_usuario AND clave=:clave";
+                    $query=$this->acceso->prepare($sql);
+                    $query->execute(array(':Id_usuario'=>$Id_usuario,':clave'=>$clave));
+                    $this->objetos=$query->fetchall();
+                    if(!empty($this->objetos)){
+                        $sql="DELETE FROM usuario  WHERE Id_usuario=:Id";
+                        $query=$this->acceso->prepare($sql);
+                        $query->execute(array(':Id'=>$Id_borrado));
+                        $this->objetos=$query->fetchall();
+                        echo 'borrado';
+                    }else{
+                        echo 'no-borrado';
+                    }
+                }
         }
 
 ?>
