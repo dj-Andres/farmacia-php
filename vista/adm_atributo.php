@@ -8,7 +8,48 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
     <?php 
         include_once 'loyout/navegacion.php';
     ?>
-  
+    <!---Modal de cambiar el avatar-->
+    <div class="modal fade" id="cambio-logo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cambiar avatar laboratorio</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <img id="logo-actual" src="../imagenes/avatar.png" class="profile-user-img img-fluid img-circle">
+            </div>
+            <div class="text-center">
+                <b id="nombre_laboratorio">
+                    
+                </b>
+            </div>
+            <!--Alertas de contraseña-->
+            <div class="alert alert-success text-center" id="update" style="display:none;">
+                <span><i class="fas fa-check m-1"></i>Se cambio la foto</span>
+            </div>
+            <div class="alert alert-danger text-center" id="no-update" style="display:none;">
+                <span><i class="fas fa-times m-1"></i>Formato no soportado</span>
+            </div>
+            <form id="form-logo" enctype="multipart/form-data">
+                <div class="input-group mb-3 ml-5 mt-2">
+                    <input type="file"  class="input-group" name="foto">
+                    <input type="hidden" name="funcion" id="funcion">
+                    <input type="hidden" name="id_logo-lab" id="id_logo-lab">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!---final de modal de cambio de avatar--->
     <!--Modal para crear laboratorio-->
     <div class="modal fade" id="crearlaboratorio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -149,7 +190,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                 <li class="nav item"><a href="#tipo" class="nav-link" data-toggle="tab">Tipo</a></li>
                             </ul>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body p-0">
                             <div class="tab-content">
                               <div class="tab-pane active" id="laboratorio">
                                 <div class="card card-success">
@@ -164,8 +205,20 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                         </div>  
                                     </div>
                                   </div>
-                                  <div class="card-body">
+                                  <div class="card-body p-0 table-responsive">
+                                      <!--Tabla de datos de laboratorios-->
+                                      <table class="table table-hover text-nowrap">
+                                        <thead class="table-success">
+                                            <tr>
+                                              <th>Laboratorio</th>
+                                              <th>Logo</th>
+                                              <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-active" id="laboratorios">
 
+                                        </tbody>
+                                      </table>
                                   </div>
                                   <div class="card-footer">
 

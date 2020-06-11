@@ -45,7 +45,7 @@ include_once'conexion.php';
                     }
                 }
                 function cambiar_foto($Id_usuario,$nombre_foto){
-                    $sql="SELECT * FROM avatar WHERE Id_usuario=:Id_usuario";
+                    $sql="SELECT avatar FROM usuario WHERE Id_usuario=:Id_usuario";
                     $query=$this->acceso->prepare($sql);
                     $query->execute(array(':Id_usuario'=>$Id_usuario));
                     $this->objetos=$query->fetchall();

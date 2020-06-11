@@ -37,5 +37,18 @@
                 return $this->objetos;
             }
         }
+        function cambiar_logo($id,$nombre_foto){
+            $sql="SELECT avatar FROM laboratorio WHERE Id_laboratorio=:Id";
+            $query=$this->acceso->prepare($sql);
+            $query->execute(array(':Id'=>$id));
+            $this->objetos=$query->fetchall();
+            
+                $sql="UPDATE laboratorio SET avatar=:nombre_foto WHERE Id_laboratorio=:Id";
+                $query=$this->acceso->prepare($sql);
+                $query->execute(array(':Id'=>$id,':nombre_foto'=>$nombre_foto));
+                
+            return $this->objetos;
+            
+        }
   }
 ?>
