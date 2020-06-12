@@ -50,5 +50,23 @@
             return $this->objetos;
             
         }
+        function borrar($id){
+            $sql="DELETE FROM laboratorio WHERE Id_laboratorio=:Id";
+            $query=$this->acceso->prepare($sql);
+            $query->execute(array(':Id'=>$id));
+            $this->objetos=$query->fetchall();
+            if(!empty($query->execute(array(':Id'=>$id)))){
+                echo 'borrado';
+            }else{
+                echo 'no-borrado';
+            }
+        }
+        function editar($nombre,$id_editado){
+            $sql="UPDATE laboratorio SET nombre=:nombre WHERE Id_laboratorio=:Id";
+            $query=$this->acceso->prepare($sql);
+            $query->execute(array(':Id'=>$id_editado,':nombre'=>$nombre));
+            $this->objetos=$query->fetchall();
+            echo 'editado';
+        }
   }
 ?>
