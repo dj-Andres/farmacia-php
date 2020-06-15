@@ -82,7 +82,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                 </div>
                 <div class="card-footer">
                     <button class="btn bg-gradient-primary float-rigth m-1" type="submit">Guardar</button>
-                    <button class="btn btn.outline-secundary float-rigth m-1" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn btn-outline-secundary float-rigth m-1" type="button" data-dismiss="modal">Close</button>
                     </form>
                 </div>
             </div>
@@ -104,21 +104,25 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                 <div class="card-body">
                     <!--ALERTAS-->
                     <div class="alert alert-success text-center" id="crear-presentacion" style="display:none;">
-                        <span><i class="fas fa-check m-1"></i>Se creo exitosamento</span>
+                        <span><i class="fas fa-check m-1"></i>Se creo exitosamente</span>
+                    </div>
+                    <div class="alert alert-success text-center" id="crear-presentacion-edit" style="display:none;">
+                        <span><i class="fas fa-check m-1"></i>Se actualizo exitosamente</span>
                     </div>
                     <div class="alert alert-danger text-center" id="nocrear-presentacion" style="display:none;">
-                        <span><i class="fas fa-times m-1"></i>El usuario ya existe</span>
+                        <span><i class="fas fa-times m-1"></i>El laboratorio ya existe</span>
                     </div>
                     <!--FIN-ALERTAS-->
                     <form id="form-crear-presentacion">
                         <div class="form-group">
                             <label for="nombre-presentacion">Nombre:</label>
-                            <input id="nombre-presentacion" type="text" class="form-control" placeholder="Ingrese nombre" require="">
+                            <input id="nombre-presentacion" type="text" class="form-control" placeholder="Ingrese nombre" required>
+                            <input type="hidden" id="Id_editar_presentacion">
                         </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn bg-gradient-primary float-rigth m-1" type="submit">Crear</button>
-                    <button class="btn btn.outline-secundary float-rigth m-1" type="button" data-dismiss="modal">Close</button>
+                    <button class="btn bg-gradient-primary float-rigth m-1" type="submit">Guardar</button>
+                    <button class="btn btn-outline-secundary float-rigth m-1" type="button" data-dismiss="modal">Close</button>
                     </form>
                 </div>
             </div>
@@ -140,20 +144,24 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                 <div class="card-body">
                     <!--ALERTAS-->
                     <div class="alert alert-success text-center" id="crear-tipo" style="display:none;">
-                        <span><i class="fas fa-check m-1"></i>Se creo exitosamento</span>
+                        <span><i class="fas fa-check m-1"></i>Se creo exitosamente</span>
+                    </div>
+                    <div class="alert alert-success text-center" id="crear-tipo-edit" style="display:none;">
+                        <span><i class="fas fa-check m-1"></i>Se actualizo exitosamente</span>
                     </div>
                     <div class="alert alert-danger text-center" id="nocrear-tipo" style="display:none;">
-                        <span><i class="fas fa-times m-1"></i>El usuario ya existe</span>
+                        <span><i class="fas fa-times m-1"></i>El laboratorio ya existe</span>
                     </div>
                     <!--FIN-ALERTAS-->
                     <form id="form-crear-tipo">
                         <div class="form-group">
                             <label for="nombre-tipo">Nombre:</label>
-                            <input id="nombre-tipo" type="text" class="form-control" placeholder="Ingrese nombre" require="">
+                            <input id="nombre-tipo" type="text" class="form-control" placeholder="Ingrese nombre" required>
+                            <input type="hidden" id="Id_editar_tipo">
                         </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn bg-gradient-primary float-rigth m-1" type="submit">Crear</button>
+                    <button class="btn bg-gradient-primary float-rigth m-1" type="submit">Guardar</button>
                     <button class="btn btn.outline-secundary float-rigth m-1" type="button" data-dismiss="modal">Close</button>
                     </form>
                 </div>
@@ -242,8 +250,19 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                         </div>  
                                     </div>
                                   </div>
-                                  <div class="card-body">
+                                  <div class="card-body p-0 table-responsive">
+                                      <!--Tabla de datos de laboratorios-->
+                                      <table class="table table-hover text-nowrap">
+                                        <thead class="table-success">
+                                            <tr>
+                                              <th>Presentación</th>
+                                              <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-active" id="presentacion">
 
+                                        </tbody>
+                                      </table>
                                   </div>
                                   <div class="card-footer">
 
@@ -263,8 +282,19 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                         </div>  
                                     </div>
                                   </div>
-                                  <div class="card-body">
-                                  
+                                  <div class="card-body p-0 table-responsive">
+                                      <!--Tabla de datos de laboratorios-->
+                                      <table class="table table-hover text-nowrap">
+                                        <thead class="table-success">
+                                            <tr>
+                                              <th>Tipo</th>
+                                              <th>Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-active" id="tipos">
+
+                                        </tbody>
+                                      </table>
                                   </div>
                                   <div class="card-footer">
                                   
@@ -291,3 +321,5 @@ include_once 'loyout/foter.php';
 }
 ?>
 <script src="../js/laboratorio.js"></script>
+<script src="../js/tipos.js"></script>
+<script src="../js/presentacion.js"></script>
