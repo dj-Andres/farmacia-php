@@ -17,7 +17,7 @@ $(document).ready(function(){
             if(response=='crear'){
                 $('#crear-presentacion').hide('slow');
                 $('#crear-presentacion').show(1000);
-                $('#crear-tipo').hide(2000);
+                $('#crear-presentacion').hide(2000);
                 $('#form-crear-presentacion').trigger('reset');
                 buscar_presentacion();
             }
