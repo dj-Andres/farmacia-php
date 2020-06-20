@@ -24,27 +24,31 @@
                 'adicional'=>$objeto->adicional,
                 'precio'=>$objeto->precio,
                 'stock'=>'stock',
-                'avatar'=>'../imagenes/producto/'.$objeto->avatar,
                 'laboratorio'=>$objeto->laboratorio,
                 'tipo'=>$objeto->tipo,
-                'presentacion'=>$objeto->presentacion
+                'presentacion'=>$objeto->presentacion,
+                'Id_laboratorio'=>$objeto->Id_laboratorio,
+                'Id_tipo'=>$objeto->Id_tipo_producto,
+                'Id_presentacion'=>$objeto->Id_presentacion,
+                'avatar'=>'../imagenes/producto/'.$objeto->avatar
             );
         }
         $jsonsting=json_encode($json);
         echo $jsonsting;
     }
-    if($_POST['funcion']=='cambiar_logo'){
-        $id=$_POST['id_logo-lab'];
+    if($_POST['funcion']=='cambiar_avatar'){
+        $id=$_POST['id_logo_prod'];
+        $avatar=$_POST['avatar'];
         if(($_FILES['foto']['type']=='image/jpeg') || ($_FILES['foto']['type']=='image/png') || ($_FILES['foto']['type']=='image/gif')){
             $nombre_foto=uniqid().'-'.$_FILES['foto']['name'];
             //echo $nombre_foto;
             //creamos una ruta//
-            $ruta='..imagenes/laboratorio/'.$nombre_foto;
+            $ruta='..imagenes/producto/'.$nombre_foto;
             move_uploaded_file($_FILES['foto']['tpm_name'],$ruta);
-            $laboratorio->cambiar_logo($id,$nombre_foto);
-            foreach($laboratorio->objetos as $objeto){
-                if($objeto->avatar!='laboratorio.jpg'){
-                    unlink('../imaganes/laboratorio/'.$objeto->avatar);
+            $producto->cambiar_logo($id,$nombre_foto);
+            foreach($producto->objetos as $objeto){
+                if($avatar!='../imagenes/producto/producto.png'){
+                    unlink($avatar);
                 }
             }
             $json=array();
@@ -68,10 +72,16 @@
         $id=$_POST['id'];            
         $laboratorio->borrar($id);
     }
-    if($_POST['funcion']=='actualizar'){
-        $nombre=$_POST['nombre_laboratorio'];
-        $id_editado=$_POST['id_editado'];
-        $laboratorio->editar($nombre,$id_editado);
+    if($_POST['funcion']=='editar'){
+        $id=$_POST['id'];
+        $nombre=$_POST['nombre'];
+        $concentracion=$_POST['concentracion'];
+        $adicional=$_POST['adicional'];
+        $precio=$_POST['precio'];
+        $laboratorio=$_POST['laboratorio'];
+        $tipo=$_POST['tipo'];
+        $presentacion=$_POST['presentacion'];
+        $producto->editar($id,$nombre,$concentracion,$adicional,$precio,$laboratorio,$tipo,$presentacion);
     }
     if($_POST['funcion']=='rellenar_laboratorios'){
         $laboratorio->rellenar_laboratorio();
