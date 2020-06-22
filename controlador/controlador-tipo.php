@@ -10,7 +10,7 @@
         $tipo->buscar();
         $json=array();
         foreach ($tipo->objetos as $objeto) {
-            $json=array(
+            $json[]=array(
                 'Id_laboratorio'=>$objeto->Id_tipo_producto,
                 'nombre'=>$objeto->nombre_tipo
             );

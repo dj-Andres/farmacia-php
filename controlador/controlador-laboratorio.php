@@ -11,7 +11,7 @@
         $laboratorio->buscar();
         $json=array();
         foreach ($laboratorio->objetos as $objeto) {
-            $json=array(
+            $json[]=array(
                 'Id_laboratorio'=>$objeto->Id_laboratorio,
                 'nombre'=>$objeto->nombre,
                 'avatar'=>'../imagenes/laboratorio/'.$objeto->avatar

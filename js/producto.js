@@ -78,12 +78,20 @@ $(document).ready(function(){
                 $('#editar').hide(2000);
                 $('#form-crear-prodcuto').trigger('reset');
                 buscar_producto();
-            }else{
+            }
+            if(response=='nocrear'){
                 $('#nocrear').hide('slow');
                 $('#nocrear').show(1000);
                 $('#nocrear').hide(2000);
                 $('#form-crear-prodcuto').trigger('reset');
             }
+            if(response=='noeditado'){
+                $('#nocrear').hide('slow');
+                $('#nocrear').show(1000);
+                $('#nocrear').hide(2000);
+                $('#form-crear-prodcuto').trigger('reset');
+            }
+            editar=false;
         })
         e.PreventDefault(); 
     });
@@ -214,4 +222,64 @@ $(document).ready(function(){
         $('#presentacion').val(presentacion).trigger('change');
         editar=true;
     });
+    //borrar producto//
+    $(document).on('click','.borrar',(e)=>{
+        funcion="borrar";
+        const elemento=$(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
+        //console.log(elemento);
+        const id=$('elemento').attr('prodId'); 
+        const nombre=$('elemento').attr('prodNom'); ; 
+        const avatar=$('elemento').attr('prodAvatar');
+        //console.log(id+nombre+avatar);
+        //libreria sweetalert//
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: 'btn btn-success',
+              cancelButton: 'btn btn-danger mr-1'
+            },
+            buttonsStyling: false
+          })
+          
+          swalWithBootstrapButtons.fire({
+            title: 'Desea eliminar al laboratorio: '+nombre+'?',
+            text: "No se podra revertir la acción!",
+            //icon: 'warning',
+            // añadimos propiedades para mostrar el avatar del laboratorio//
+            imageUrl:''+avatar+'',
+            imageWidth:100,
+            imageHeigth:100,
+            showCancelButton: true,
+            confirmButtonText: 'Si, se elimino el registro!',
+            cancelButtonText: 'No, cancelar!',
+            reverseButtons: true
+          }).then((result) => {
+            if (result.value) {
+                //eviamos datos mediante ajax//
+                $.post('../controlador/controlador-producto.php',{id,funcion},(response)=>{
+                    //console.log(response);
+                    editar==false;
+                    if (response=='borrado') {
+                            swalWithBootstrapButtons.fire(
+                                'Eliminado!',
+                                'El producto :'+nombre+' se ha eliminado',
+                                'success'
+                            )
+                            buscar_producto();
+                    }else{
+                        swalWithBootstrapButtons.fire(
+                            'No se pudo Eliminar!',
+                            'El producto :'+nombre+' nose ha eliminado porque esta asociado a un producto',
+                            'success'
+                          )
+                    }
+                })
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire(
+                'Cancelar',
+                'El producto :'+nombre+' no se elimino',
+                'error'
+              )
+            }
+          })
+   })
 })

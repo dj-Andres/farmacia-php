@@ -10,7 +10,7 @@
         $presentacion->buscar();
         $json=array();
         foreach ($presentacion->objetos as $objeto) {
-            $json=array(
+            $json[]=array(
                 'Id_presentacion'=>$objeto->Id_presentacion,
                 'nombre'=>$objeto->presentacion
             );

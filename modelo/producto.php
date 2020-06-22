@@ -45,7 +45,7 @@
                 
         }
         function borrar($id){
-            $sql="DELETE FROM laboratorio WHERE Id_laboratorio=:Id";
+            $sql="DELETE FROM productos WHERE Id_producto=:Id";
             $query=$this->acceso->prepare($sql);
             $query->execute(array(':Id'=>$id));
             $this->objetos=$query->fetchall();

@@ -17,7 +17,7 @@
         $producto->buscar();
         $json=array();
         foreach ($producto->objetos as $objeto) {
-            $json=array(
+            $json[]=array(
                 'Id_laboratorio'=>$objeto->Id_laboratorio,
                 'nombre'=>$objeto->nombre,
                 'concentracion'=>$objeto->concentracion,
@@ -70,7 +70,7 @@
     }
     if($_POST['funcion']=='borrar'){
         $id=$_POST['id'];            
-        $laboratorio->borrar($id);
+        $producto->borrar($id);
     }
     if($_POST['funcion']=='editar'){
         $id=$_POST['id'];
