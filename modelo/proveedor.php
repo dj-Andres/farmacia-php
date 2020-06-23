@@ -37,6 +37,22 @@
                 return $this->objetos;
             }
         }
+        function cambiar_logo($id,$nombre_foto){
+            $sql="UPDATE proveedor SET avatar=:avatar WHERE Id_proveedor=:Id";
+            $query=$this->acceso->prepare($sql);
+            $query->execute(array(':Id'=>$id,':avatar'=>$nombre_foto));              
+        }
+        function borrar($id){
+            $sql="DELETE FROM proveedor WHERE Id_proveedor=:Id";
+            $query=$this->acceso->prepare($sql);
+            $query->execute(array(':Id'=>$id));
+            $this->objetos=$query->fetchall();
+            if(!empty($query->execute(array(':Id'=>$id)))){
+                echo 'borrado';
+            }else{
+                echo 'no-borrado';
+            }
+        }
         
   }
 ?>

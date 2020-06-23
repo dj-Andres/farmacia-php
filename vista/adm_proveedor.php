@@ -57,7 +57,49 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
     </div>
     </div>
     <!---Final de modal de crear usuarios-->
-    <!--Modal para para confirmar-->
+    <!---Modal de cambiar el avatar-->
+    <div class="modal fade" id="cambio-logo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cambiar avatar del proveedor</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <img id="logo-actual" src="../imagenes/avatar.png" class="profile-user-img img-fluid img-circle">
+            </div>
+            <div class="text-center">
+                <b id="nombre_logo">
+                    
+                </b>
+            </div>
+            <!--Alertas de contraseña-->
+            <div class="alert alert-success text-center" id="update" style="display:none;">
+                <span><i class="fas fa-check m-1"></i>Se cambio la foto</span>
+            </div>
+            <div class="alert alert-danger text-center" id="no-update" style="display:none;">
+                <span><i class="fas fa-times m-1"></i>Formato no soportado</span>
+            </div>
+            <form id="form-logo" enctype="multipart/form-data">
+                <div class="input-group mb-3 ml-5 mt-2">
+                    <input type="file"  class="input-group" name="foto">
+                    <input type="hidden" name="funcion" id="funcion">
+                    <input type="hidden" name="id_logo_prov" id="id_logo_prov">
+                    <input type="hidden" name="avatar" id="avatar">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn bg-gradient-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!---final de modal de cambio de avatar--->
     
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">

@@ -110,7 +110,7 @@ $(document).ready(function(){
         funcion='crear-usuario';
         $.post('../controlador/usuario-controlador.php',{nombre,apellido,nacimiento,cedula,clave,funcion},(response)=>{
             console.log(response);
-            if(response==crear){
+            if(response=='crear'){
                 $('#crear').hide('slow');
                 $('#crear').show(1000);
                 $('#crear').hide(2000);
