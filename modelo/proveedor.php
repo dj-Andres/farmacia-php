@@ -53,6 +53,28 @@
                 echo 'no-borrado';
             }
         }
+        function editar($id,$nombre,$correo,$telefono,$direccion){
+            $sql="SELECT Id_proveedor FROM proveedor WHERE Id_proveedor!=:id AND nombre=:nombre";
+            $query=$this->acceso->prepare($sql);
+            $query->execute(array('id'=>$id,':nombre'=>$nombre));
+            $this->objetos=$query->fetchall();
+            if (!empty($this->objetos)) {
+                echo 'noeditado';
+            }else{
+                $sql="UPDATE proveedor SET nombre=:nombre,telefono=:telefono,correo=:correo,direccion=:direccion WHERE Id_proveedor=:id";
+                $query=$this->acceso->prepare($sql);
+                $query->execute(array('id'=>$id,':nombre'=>$nombre,':telefono'=>$telefono,':correo'=>$correo,':direccion'=>$direccion));
+                $this->objetos=$query->fetchall();
+                echo 'editado';
+            }
+        }
+        function rellenar_proveedor(){
+            $sql="SELECT * FROM proveedor ORDER BY nombre ASC";
+            $query=$this->acceso->prepare($sql);
+            $query->execute();
+            $this->objetos=$query->fetchall();          
+            return $this->objetos;
+        }
         
   }
 ?>

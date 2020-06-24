@@ -17,13 +17,17 @@
         $producto->buscar();
         $json=array();
         foreach ($producto->objetos as $objeto) {
+            $producto->obtener_lote($objeto->Id_producto);
+            foreach($producto->objetos as $obj){
+                $total=$obj->total;
+            }
             $json[]=array(
-                'Id_laboratorio'=>$objeto->Id_laboratorio,
+                'Id_producto'=>$objeto->Id_producto,
                 'nombre'=>$objeto->nombre,
                 'concentracion'=>$objeto->concentracion,
                 'adicional'=>$objeto->adicional,
                 'precio'=>$objeto->precio,
-                'stock'=>'stock',
+                'stock'=>$total,
                 'laboratorio'=>$objeto->laboratorio,
                 'tipo'=>$objeto->tipo,
                 'presentacion'=>$objeto->presentacion,

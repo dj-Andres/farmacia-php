@@ -60,4 +60,24 @@
         $id=$_POST['id'];            
         $proveedor->borrar($id);
     }
+    if($_POST['funcion']=='editar'){
+        $id=$_POST['id'];
+        $nombre=$_POST['nombre'];
+        $direccion=$_POST['direccion'];
+        $correo=$_POST['correo'];
+        $telefono=$_POST['telefono'];
+        $proveedor->editar($id,$nombre,$correo,$telefono,$direccion);
+    }
+    if($_POST['funcion']=='rellenar_proveedores'){
+        $proveedor->rellenar_proveedor();
+        $json=array();
+        foreach($proveedor->objetos as $objeto){
+            $json[]=array(
+                'Id_proveedor'=>$objeto->Id_proveedor,
+                'nombre'=>$objeto->nombre
+            );
+        }
+        $jsonsting=json_encode($json);
+        echo $jsonsting;
+    }
 ?>

@@ -71,6 +71,52 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
         </div>
     </div>
     </div>
+    <!--Modal para agregar lotes-->
+    <div class="modal fade" id="crear-lotes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Crear Lote</h3>
+                    <button class="close" data-dismiss="modal" aria-label="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <!--ALERTAS-->
+                    <div class="alert alert-success text-center" id="add" style="display:none;">
+                        <span><i class="fas fa-check m-1"></i>Se agreggo exitosamente el lote al producto</span>
+                    </div>
+                    <!--FIN-ALERTAS-->
+                    <form id="form-crear-lote">
+                        <div class="form-group">
+                            <label for="producto">Producto:</label>
+                            <label id="producto">Nombre:</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="proveedor">Proveedor:</label>
+                            <select name="proveedor" id="proveedor" class="form-control select2" style="width:100%"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Stock:</label>
+                            <input type="number" id="stock" class="form-control" placeholder="Ingrese el stock">
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Fecha Vencimiento:</label>
+                            <input type="date" id="vencimiento" class="form-control" placeholder="Ingrese la fecha de vencimiento">
+                        </div>
+                        <input type="hidden" id="id_editar_lote">
+                </div>
+                <div class="card-footer">
+                    <button class="btn bg-gradient-primary float-rigth m-1" type="submit">Guardar</button>
+                    <button class="btn btn.outline-secundary float-rigth m-1" type="button" data-dismiss="modal">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--Fin de modal de lotes---> 
     <!---Final de modal de crear usuarios-->
     <!---Modal de cambiar el avatar-->
     <div class="modal fade" id="cambio-logo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
