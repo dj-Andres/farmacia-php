@@ -82,7 +82,7 @@
             $query=$this->acceso->prepare($sql);
             $query->execute(array(':id'=>$id));
             $this->objetos=$query->fetchall();
-            return $this->$objetos;
+            return $this->objetos;
         }
   }
 ?>
