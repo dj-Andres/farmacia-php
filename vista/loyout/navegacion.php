@@ -1,5 +1,5 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link rel="stylesheet" href="../css/main.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../css/css/all.min.css">
   <!-- Ionicons -->
@@ -24,10 +24,34 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="" class="nav-link">Home</a>
+        <a href="#" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
+      </li>
+      <li class="nav-item dropdown" id="cat-carrito" style="display: none;">
+        <img  src="../imagenes/carrito.png" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+        </img>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <table class="carro table table-hover text-nowrap p-0">
+            <thead class="table-success">
+              <tr>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Concentración</th>
+                <th>Adicional</th>
+                <th>Precio</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody id="lista">
+
+            </tbody>
+          </table>
+          <a href="#" class="btn btn-danger btn-block">Procesar Compra</a>
+          <a href="#" class="btn btn-primary btn-block">Vaciar Carrito</a>
+        </div>
       </li>
     </ul>
     <!-- Right navbar links -->
