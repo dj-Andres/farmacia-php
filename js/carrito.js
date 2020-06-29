@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    template='';
     $(document).on('click','.agg-carrito',(e)=>{
         const elemento=$(this)[0].activeElement.parentElement.parentElement.parentElement.parentElement;
         const id=$(elemento).attr('prodID');
@@ -23,7 +22,7 @@ $(document).ready(function(){
                 presentacion:presentacion,
                 avatar:avatar
             }
-            template+=`
+            template=`
                 <tr>
                     <td>${producto.id}</td>
                     <td>${producto.nombre}</td>
@@ -33,10 +32,13 @@ $(document).ready(function(){
                     <td><button class="borrar-producto btn btn-danger"><i class="fas fa-times-circle"></i></button></td>
                 </tr>
             `;
-            $('#lista').html(template);
+            $('#lista').append(template);
     })
     $(document).on('click','.borrar-producto',(e)=>{
         const elemento=$(this)[0].activeElement.parentElement.parentElement;
         elemento.remove();
+    })
+    $(document).on('click','#vaciar-carrito',(e)=>{
+        $('#lista').empty();
     })
 })

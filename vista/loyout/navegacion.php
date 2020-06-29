@@ -50,7 +50,7 @@
             </tbody>
           </table>
           <a href="#" class="btn btn-danger btn-block">Procesar Compra</a>
-          <a href="#" class="btn btn-primary btn-block">Vaciar Carrito</a>
+          <a href="#" class="btn btn-primary btn-block" id="vaciar-carrito">Vaciar Carrito</a>
         </div>
       </li>
     </ul>
