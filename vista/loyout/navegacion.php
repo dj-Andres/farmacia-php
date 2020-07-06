@@ -1,5 +1,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="../css/main.css">
+  <link rel="stylesheet" href="../css/compra.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="../css/css/all.min.css">
   <!-- Ionicons -->
@@ -30,8 +31,8 @@
         <a href="#" class="nav-link">Contact</a>
       </li>
       <li class="nav-item dropdown" id="cat-carrito" style="display: none;">
-        <img  src="../imagenes/carrito.png" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          
+        <img  src="../imagenes/carrito.png" class="imagen-carrito nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span id="contador" class="contador badge badge-danger"></span>
         </img>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <table class="carro table table-hover text-nowrap p-0">
@@ -49,7 +50,7 @@
 
             </tbody>
           </table>
-          <a href="#" class="btn btn-danger btn-block">Procesar Compra</a>
+          <a href="#" class="btn btn-danger btn-block" id="procesar_pedido">Procesar Compra</a>
           <a href="#" class="btn btn-primary btn-block" id="vaciar-carrito">Vaciar Carrito</a>
         </div>
       </li>
