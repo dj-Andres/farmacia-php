@@ -38,6 +38,13 @@
                 return $this->objetos;
             }
         }
+        function buscarId($id_producto){
+            $sql="SELECT Id_producto,producto.nombre as nombre,concentracion,adicional,precio,producto.avatar as avatar,tipo_producto.nombre_tipo as tipo,presentacion.presentacion as presentacion ,laboratorio.nombre as laboratorio,Id_laboratorio,Id_tipo_producto,Id_presentacion FROM productos JOIN laboratorio ON prod_lab=Id_laboratorio JOIN tipo_producto ON  prod_tip_prod=Id_tipo_producto JOIN presentacion ON  prod_present=Id_presentacion WHERE Id_producto:=Id";
+            $query=$this->acceso->prepare($sql);
+            $query->execute(array(':Id'=>$id_producto));
+            $this->objetos=$query->fetchall();
+            return $this->objetos;
+        }
         function cambiar_logo($id,$nombre_foto){
             $sql="UPDATE productos SET avatar=:avatar WHERE Id_producto=:Id";
             $query=$this->acceso->prepare($sql);

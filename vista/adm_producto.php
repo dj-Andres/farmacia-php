@@ -28,7 +28,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                         <span><i class="fas fa-times m-1"></i>El producto ya existe</span>
                     </div>
                     <div class="alert alert-danger text-center" id="editar" style="display:none;">
-                        <span><i class="fas fa-times m-1"></i>Se actualizo correctamente</span>
+                        <span><i class="fas fa-check m-1"></i>Se actualizo correctamente</span>
                     </div>
                     <!--FIN-ALERTAS-->
                     <form id="form-crear-producto">
@@ -46,7 +46,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                         </div>
                         <div class="form-group">
                             <label for="precio">Precio:</label>
-                            <input id="precio" type="number" class="form-control" placeholder="Ingrese precio" required value="1">
+                            <input id="precio" type="number" step="any" class="form-control" placeholder="Ingrese precio" required value="1">
                         </div>
                         <div class="form-group">
                             <label for="laboratorio">Laboratorio:</label>

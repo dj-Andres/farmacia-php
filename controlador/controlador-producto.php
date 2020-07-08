@@ -99,4 +99,32 @@
         $jsonsting=json_encode($json);
         echo $jsonsting;
     }
+    if($_POST['funcion']=='buscar_Id'){
+        $id_producto=$_POST['Id_producto'];
+        $producto->buscarId($id_producto);
+        $json=array();
+        foreach ($producto->objetos as $objeto) {
+            $producto->obtener_lote($objeto->Id_producto);
+            foreach($producto->objetos as $obj){
+                $total=$obj->total;
+            }
+            $json[]=array(
+                'Id_producto'=>$objeto->Id_producto,
+                'nombre'=>$objeto->nombre,
+                'concentracion'=>$objeto->concentracion,
+                'adicional'=>$objeto->adicional,
+                'precio'=>$objeto->precio,
+                'stock'=>$total,
+                'laboratorio'=>$objeto->laboratorio,
+                'tipo'=>$objeto->tipo,
+                'presentacion'=>$objeto->presentacion,
+                'Id_laboratorio'=>$objeto->Id_laboratorio,
+                'Id_tipo'=>$objeto->Id_tipo_producto,
+                'Id_presentacion'=>$objeto->Id_presentacion,
+                'avatar'=>'../imagenes/producto/'.$objeto->avatar
+            );
+        }
+        $jsonsting=json_encode($json[0]);
+        echo $jsonsting;
+    }
 ?>
