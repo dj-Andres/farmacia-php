@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    calcularTotal();
     contar_productos();
     recuperar_carrito_Ls_compra();
     recuperar_carrito_Ls();
@@ -66,6 +67,7 @@ $(document).ready(function(){
         elemento.remove();
         elmininar_producto_ls(id);
         contar_productos();
+        calcularTotal();
         //console.log(contador);
     })
     $(document).on('click','#vaciar-carrito',(e)=>{
@@ -164,10 +166,10 @@ $(document).ready(function(){
                 let template_compra='';
                 let json=JSON.parse(response);
                 template_compra=`
-                    <tr prodId="${producto.id}>
+                    <tr prodId="${producto.id} prodPrecio="${json.precio}">
                         <td>${json.nombre}</td>
                         <td>${json.stock}</td>
-                        <td>${json.precio}</td>
+                        <td class="precio">${json.precio}</td>
                         <td>${json.concentracion}</td>
                         <td>${json.adicional}</td>
                         <td>${json.laboratorio}</td>
@@ -185,11 +187,23 @@ $(document).ready(function(){
             })
         });      
     }
-    //evento de actualizar en tiempo real la cantidad de compra/7
+    //actualizar precios y cantidad/7
+    $(document).on('click','#actualizar',(e)=>{
+        let productos,precios;
+        precios=document.querySelectorAll('.precio');
+        productos=recuperarLs();
+        productos.forEach(function(productos,indice) {
+            producto.precio=precios[indice].textContent;
+        });
+        localStorage.setItem('productos',JSON.stringify(productos));
+        calcularTotal();
+    })
+    //evento de actualizar en tiempo real la cantidad de compra//
     $("#cp").keyup((e)=>{
-        let id,cantidad,producto,productos,montos;
+        let id,cantidad,producto,productos,montos,precio;
          producto=$(this)[0].activeElement.parentElement.parentElement;
          id=$(producto).attr('prodId');
+         precio=$(producto).attr('prodPrecio');
          cantidad=producto.querySelector('input').value;
          montos=document.querySelectorAll('subtotal');
          productos=recuperarLs();
@@ -197,9 +211,44 @@ $(document).ready(function(){
          productos.forEach(function(prod,indice) {
              if(prod.id===id){
                 prod.cantidad=cantidad;
-                montos[indice].innerHTML=`<h5>${cantidad*productos[indice].precio}</h5>`;
+                prod.precio=precio;
+                montos[indice].innerHTML=`<h5>${cantidad*precio}</h5>`;
              }
          });
-         localStorage.setItem('productos',JSON.stringify(producto));
+         localStorage.setItem('productos',JSON.stringify(productos));
+         calcularTotal();
     })
+    function calcularTotal(){
+        let productos;
+        let subtotal;
+        let subt_igv;
+        let total_sin_descuento;
+        let pago;
+        let vuelto;
+        let descuento;
+        let total=0;
+        let igv=0.12;
+        productos=recuperarLs();
+
+        productos.forEach(producto => {
+            let subtotal_prod=Number(producto.precio*producto.cantidad);
+            total=total+subtotal_prod;
+        });
+        total_sin_descuento=total.toFixed(2);
+        subt_igv=parseFloat(total*igv).toFixed(2);
+        subtotal=parseFloat(total-subt_igv).toFixed(2);
+
+        pago=$('#pago').val();
+        descuento=$('#descuento').val();
+
+        total=total-descuento;
+        vuelto=pago-total;
+
+        $('#subtotal').html(subtotal);
+        $('#con_igv').html(subt_igv);
+        $('#total_sin_descuento').html(total_sin_descuento);
+        $('#total').html(total).toFixed(2);
+        $('#vuelto').html(vuelto).toFixed(2);
+
+    }
 })
