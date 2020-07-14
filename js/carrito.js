@@ -80,6 +80,9 @@ $(document).ready(function(){
     $(document).on('click','#procesar_pedido',(e)=>{
         procesar_pedido();
     })
+    $(document).on('click','#procesar_compra',(e)=>{
+        procesar_compra();
+    })
     function recuperarLs(){
         let productos;
         if(localStorage.getItem('productos')===null){
@@ -250,5 +253,61 @@ $(document).ready(function(){
         $('#total').html(total).toFixed(2);
         $('#vuelto').html(vuelto).toFixed(2);
 
+    }
+    function procesar_compra(){
+        let nombre,cedula;
+        nombre=$('#cliente').val();
+        cedula=$('#cedula').val();
+
+        if(recuperarLs.length==0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No hay productos en el carrito de compras!'
+              }).then(function() {
+                  location.href="../vista/adm_catalogo.php"
+              })
+        }
+        else if(nombre== ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ingresar el nombre del cliente!'
+              })
+        }
+        else{
+            verificar_stock().then(error=>{
+                if(error==0){
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se realizo la compra',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'El numero de de producto es superior al que se encuentra en el stock!'
+                      })
+                }
+            });
+        }
+    }
+
+    async function verificar_stock(){
+        let productos;
+        let error=0;
+        funcion='verificar_stock';
+        productos=recuperarLs();
+        const response=await fetch('../controlador/controlador-producto.php',{
+            method :'POST',
+            headers:{'Content=Type':'application/x-www-form-urlencoded'},
+            body:'funcion='+funcion+'&&productos='+JSON.stringify(productos)
+        })
+        let error=await response.text();
+        
+        return error; 
     }
 })
