@@ -260,6 +260,9 @@ $(document).ready(function(){
         cedula=$('#cedula').val();
 
         if(recuperarLs.length==0){
+            registrar_compra(nombre_cli,cedula);
+
+
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -284,7 +287,10 @@ $(document).ready(function(){
                         title: 'Se realizo la compra',
                         showConfirmButton: false,
                         timer: 1500
-                      })
+                      }).then(function() {
+                        eliminar_ls();
+                        location.href="../vista/adm_catalogo.php"
+                    })
                 }else{
                     Swal.fire({
                         icon: 'error',
@@ -309,5 +315,14 @@ $(document).ready(function(){
         let error=await response.text();
         
         return error; 
+    }
+    function registrar_compra(nombre_cli,cedula){
+        funcion='registrar_compra';
+        let total=$('#total').get(0).textContent;
+        let productos=recuperarLs();
+        let json=JSON.stringify(productos);
+        $.post('../controlador/controlador-compra.php',{funcion,total,nombre_cli,cedula,json},(response)=>{
+            console.log(response);
+        })
     }
 })
