@@ -41,16 +41,22 @@
 
                     foreach ($lote as $lote) {
                         if($cantidad < $lote->stock){
+                            $sql="INSERT INTO detalle_venta(det_cantidad,det_vencimiento,Id_det_lote,Id_det_prod,Id_det_prov,Id_det_venta) VALUES('$cantidad','$lote->vencimiento','$lote->Id_lote','$prod->Id','$lote->lote_Id_prov','$id_venta')";
+                            $conexion->exec($sql);
                             $conexion->exec("UPDATE lote SET stock=stock-'.$cantidad' WHERE Id_lote='$lote->Id_lote'");
                             $cantidad=0;
                         }
                         
                         if($cantidad == $lote->stock){
+                            $sql="INSERT INTO detalle_venta(det_cantidad,det_vencimiento,Id_det_lote,Id_det_prod,Id_det_prov,Id_det_venta) VALUES('$cantidad','$lote->vencimiento','$lote->Id_lote','$prod->Id','$lote->lote_Id_prov','$id_venta')";
+                            $conexion->exec($sql);
                             $conexion->exec("DELETE FROM  lote  WHERE Id_lote='$lote->Id_lote'");
                             $cantidad=0;
                         }
 
                         if($cantidad > $lote->stock){
+                            $sql="INSERT INTO detalle_venta(det_cantidad,det_vencimiento,Id_det_lote,Id_det_prod,Id_det_prov,Id_det_venta) VALUES('$lote->stock','$lote->vencimiento','$lote->Id_lote','$prod->Id','$lote->lote_Id_prov','$id_venta')";
+                            $conexion->exec($sql);
                             $conexion->exec("DELETE FROM  lote  WHERE Id_lote='$lote->Id_lote'");
                             $cantidad=$cantidad-$lote->stock;
                         }            
