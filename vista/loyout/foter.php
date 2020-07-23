@@ -19,6 +19,7 @@
 <!---Alartas-->
 <script src="../js/sweetalert2.js"></script>
 <!---select2-->
-<script src="../js/select2.js"></script>
+<!--<script src="../js/select2.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 </body>
 </html>

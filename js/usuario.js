@@ -11,6 +11,7 @@ $(document).ready(function(){
         //funcion ajax para obtener los datos del usuario//
         funcion='buscar_usuario';
         $.post('../contralador/usuario-controlador.php',{dato,funcion},(response)=>{
+            console.log(response);
             let nombre='';
             let apellido='';
             let edad='';

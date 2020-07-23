@@ -3,7 +3,7 @@ session_start();
 if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
     include_once 'loyout/header.php';
 ?>
-  <title>FarmaciaSystem</title>
+  <title>FarmaciaSystem|Editar datos Personales</title>
 
     <?php 
         include_once 'loyout/navegacion.php';
@@ -110,7 +110,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="../vista/adm_catalogo.php">Home</a></li>
+              <li class="breadcrumb-item"><a href="../vista/adm_catalago.php">Home</a></li>
               <li class="breadcrumb-item active">Datos Personales</li>
             </ol>
           </div>
@@ -132,7 +132,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                     <div class="text-center">
                                         <button  type="button" data-toggle="modal" data-target="#cambio-avatar" class="btn btn-primary btn-sm mt-1">Cambiar el avatar</button>
                                     </div>
-                                    <input id="Id_usuario" type="hidden" value="<?php  echo $_SESSION['usuario'];?>">
+                                    <input id="Id_usuario" type="" value="<?php echo $_SESSION['usuario'] ?>">
                                     <h3 class="profile-username text-center text-success" id="nombre">Nombre:</h3>
                                     <p class="text-muted text-center" id="apellido">Apellido:</p>
                                     <ul class="list-group list-group-unbordered mb-3">
@@ -144,13 +144,13 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                         </li>
                                         <li class="list-group-item">
                                             <b style="color:#0B7300">Tipo Ususario:</b><a class="float-rigth" id="us_tipo">Administrador</a>
-                                            <spam class="float-rigth"></spam>
+                                            <spam class="float-rigth badge badge-primary"></spam>
                                         </li>
                                         <button type="button" class="btn btn-block btn-outline-warning btn-sm" data-toggle="modal" data-target="#cambio-contrasena">Cambiar clave</button>
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div>                  
                     </div>
                     <div class="card card-success">
                         <div class="card-header">
@@ -182,7 +182,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                 <i class="fas fa-pencil-alt mr-1"></i>Información adicional
                             </strong>
                             <p class="text-center" id="adicioanl-use">andres96jimenez@gmail.com</p>
-                            <button class="edit btn btn-block bg-grandient-danger">Editar</button>
+                            <button class=" btn btn-block bg-gradient-danger">Editar</button>
                         <div class="card-footer">
                             <p class="text-muted">Click en el botón que desea editar</p>
                         </div>
@@ -230,8 +230,8 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3){
                                             <textarea name="adicional" id="adicional" class="form-control"></textarea>
                                         </div>
                                     </div>
-                                    <div class="form-control row">
-                                        <div class="offset-sm-10 col-sm-10 float-rigth">
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10 float-rigth">
                                             <button class="btn btn-block btn-outline-success">Guardar</button>
                                         </div>
                                     </div>

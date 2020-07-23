@@ -12,9 +12,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!----Sweetalert---->
-  <link rel="stylesheet" href="css/sweetalert2.css">
+  <link rel="stylesheet" href="../css/sweetalert2.css">
   <!--Select2-->
-  <link rel="stylesheet" href="css/select2.css">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -27,7 +27,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Home</a>
+        <a href="adm_catalago.php" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
@@ -94,7 +94,7 @@
                with font-awesome or any other icon font library -->
                <li class="nav-header">USUARIO</li>
               <li class="nav-item">
-                <a href="editar-datos-personales.php" class="nav-link">
+                <a href="../vista/editar-datos-personales.php" class="nav-link">
                   <i class="nav-icon fas fa-user-cog"></i>
                   <p>
                     Datos Personales
