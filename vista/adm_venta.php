@@ -89,6 +89,82 @@ if($_SESSION['us_tipo']==3 || $_SESSION['us_tipo']==1){
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    <section>
+        <div class="container-fluid">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Consultas</h3>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                      <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                          <div class="inner">
+                            <h3 id="venta_dia_vendedor"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></h3>
+
+                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Venta del dia por Vendedor</font></font></p>
+                          </div>
+                          <div class="icon">
+                            <i class="fas fa-user"></i>
+                          </div>
+                          <a href="#" class="small-box-footer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Más información </font></font><i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                      </div>
+                      <!-- ./col -->
+                      <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                          <div class="inner">
+                            <h3 id="venta_diaria"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></h3>
+
+                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Venta Diaria</font></font></p>
+                          </div>
+                          <div class="icon">
+                            <i class="fas fa-shopping-bag"></i>
+                          </div>
+                          <a href="#" class="small-box-footer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Más información </font></font><i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                      </div>
+                      <!-- ./col -->
+                      <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                          <div class="inner">
+                            <h3 id="venta_mensual"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></h3>
+
+                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Venta Mensual</font></font></p>
+                          </div>
+                          <div class="icon">
+                            <i class="fas fa-calendar-alt"></i>
+                          </div>
+                          <a href="#" class="small-box-footer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Más información </font></font><i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                      </div>
+                      <!-- ./col -->
+                      <div class="col-lg-3 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-danger">
+                          <div class="inner">
+                            <h3 id="venta_anual"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></h3>
+
+                            <p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Venta Anual</font></font></p>
+                          </div>
+                          <div class="icon">
+                            <i class="fas fa-signal"></i>
+                          </div>
+                          <a href="#" class="small-box-footer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Más información </font></font><i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                      </div>
+                      <!-- ./col -->
+                  </div>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Main content -->
     <section>
         <div class="container-fluid">

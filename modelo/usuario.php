@@ -12,11 +12,24 @@ include_once 'conexion.php';
                     $this->acceso=$db->pdo;
                 }
                 function logear($dni,$pass){
-                    $sql="SELECT * FROM usuario inner join tipo_us on us_tipo=Id_tipo_us WHERE cedula=:dni and clave=:pass";
+                    $sql="SELECT * FROM usuario inner join tipo_us on us_tipo=Id_tipo_us WHERE cedula=:dni";
                     $query=$this->acceso->prepare($sql);
-                    $query->execute(array(':dni' =>$dni ,':pass'=>$pass));
+                    $query->execute(array(':dni' =>$dni));
                     $this->objetos = $query->fetchall();
-                    return $this->objetos;
+
+                    foreach ($this->objetos as $objeto) {
+                        $contrasena_actual=$objeto->clave;
+                    }
+                    if (strpos($contrasena_actual,'$2y$10$')===0) {
+                        if(password_verify($pass,$contrasena_actual)){
+                            return $this->objetos;
+                        }
+                    }else{
+                        if($pass==$contrasena_actual){
+                            return $this->objetos;
+                        }
+                    }
+                    
                 }
                 function obtener_datos($id){
                     $sql="SELECT * FROM usuario  join tipo_us on us_tipo=Id_tipo_us  AND Id_usuario=:id";
@@ -31,17 +44,34 @@ include_once 'conexion.php';
                     $query->execute(array(':Id_usuario'=>$Id_usuario,':residencia'=>$resedencia,':telefono'=>$telefono,':correo'=>$correo,':sexo'=>$sexo,':adicional'=>$adiconal));
                 }
                 function actualizar_clave($Id_usuario,$vieja_clave,$nueva_clave){
-                    $sql="SELECT * FROM usuario WHERE clave=:vieja_clave AND Id_usuario=:Id_usuario";
+                    $sql="SELECT * FROM usuario WHERE  Id_usuario=:Id_usuario";
                     $query=$this->acceso->prepare($sql);
-                    $query->execute(array(':Id_usuario'=>$Id_usuario,':vieja_clave'=>$vieja_clave));
+                    $query->execute(array(':Id_usuario'=>$Id_usuario));
                     $this->objetos=$query->fetchall();
-                    if(!empty($this->objetos)){
-                        $sql="UPDATE usuario SET clave=:nueva_clave WHERE Id_usuario=:Id_usuario";
-                        $query=$this->acceso->prepare($sql);
-                        $query->execute(array(':Id_usuario'=>$Id_usuario,':nueva_clave'=>$nueva_clave));
-                        echo 'actualizado';
+
+                    foreach ($this->objetos as $objeto) {
+                        $contrasena_actual=$objeto->clave;
+                    }
+                    if (strpos($contrasena_actual,'$2y$10$')===0) {
+                        if(password_verify($vieja_clave,$contrasena_actual)){
+                            $pass=password_hash($nueva_clave,PASSWORD_BCRYPT,['cost'=>10]);
+                            $sql="UPDATE usuario SET clave=:nueva_clave WHERE Id_usuario=:Id_usuario";
+                            $query=$this->acceso->prepare($sql);
+                            $query->execute(array(':Id_usuario'=>$Id_usuario,':nueva_clave'=>$pass));
+                            echo 'actualizado';    
+                        }else{
+                            echo 'No se realizo cambio';
+                        }
                     }else{
-                        echo 'No se realizo cambio';
+                        if($vieja_clave==$contrasena_actual){
+                            $pass=password_hash($nueva_clave,PASSWORD_BCRYPT,['cost'=>10]);
+                            $sql="UPDATE usuario SET clave=:nueva_clave WHERE Id_usuario=:Id_usuario";
+                            $query=$this->acceso->prepare($sql);
+                            $query->execute(array(':Id_usuario'=>$Id_usuario,':nueva_clave'=>$pass));
+                            echo 'actualizado';    
+                        }else{
+                            echo 'No se realizo cambio';
+                        }
                     }
                 }
                 function cambiar_foto($Id_usuario,$nombre_foto){
@@ -120,18 +150,33 @@ include_once 'conexion.php';
                     }
                 }
                 function borrar($clave,$Id_borrado,$Id_usuario){
-                    $sql="SELECT Id_usuario FROM usuario  WHERE Id_usuario=:Id_usuario AND clave=:clave";
+                    $sql="SELECT * FROM usuario  WHERE Id_usuario=:Id_usuario";
                     $query=$this->acceso->prepare($sql);
-                    $query->execute(array(':Id_usuario'=>$Id_usuario,':clave'=>$clave));
+                    $query->execute(array(':Id_usuario'=>$Id_usuario));
                     $this->objetos=$query->fetchall();
-                    if(!empty($this->objetos)){
-                        $sql="DELETE FROM usuario  WHERE Id_usuario=:Id";
-                        $query=$this->acceso->prepare($sql);
-                        $query->execute(array(':Id'=>$Id_borrado));
-                        $this->objetos=$query->fetchall();
-                        echo 'borrado';
+                    foreach ($this->objetos as $objeto) {
+                        $contrasena_actual=$objeto->clave;
+                    }
+                    if (strpos($contrasena_actual,'$2y$10$')===0) {
+                        if(password_verify($clave,$contrasena_actual)){
+                            $sql="DELETE FROM usuario  WHERE Id_usuario=:Id";
+                            $query=$this->acceso->prepare($sql);
+                            $query->execute(array(':Id'=>$Id_borrado));
+                            $this->objetos=$query->fetchall();
+                            echo 'borrado';
+                        }else{
+                            echo 'no-borrado';
+                        }
                     }else{
-                        echo 'no-borrado';
+                        if($clave==$contrasena_actual){
+                            $sql="DELETE FROM usuario  WHERE Id_usuario=:Id";
+                            $query=$this->acceso->prepare($sql);
+                            $query->execute(array(':Id'=>$Id_borrado));
+                            $this->objetos=$query->fetchall();
+                            echo 'borrado';
+                        }else{
+                            echo 'no-borrado';
+                        }
                     }
                 }
         }

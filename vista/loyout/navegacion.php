@@ -12,9 +12,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!----Sweetalert---->
-  <link rel="stylesheet" href="../css/sweetalert2.css">
+  <link rel="stylesheet" href="css/sweetalert2.css">
   <!--Select2-->
-  <link rel="stylesheet" href="../css/select2.css">
+  <link rel="stylesheet" href="css/select2.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
