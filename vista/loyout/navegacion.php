@@ -14,7 +14,7 @@
   <!----Sweetalert---->
   <link rel="stylesheet" href="../css/sweetalert2.css">
   <!--Select2-->
-  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/select2.css">
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->

@@ -87,10 +87,10 @@ $(document).ready(function(){
         if(edit==true){
             //capturar los datos del inputs del formulario de edicion//
             // let se usa para usar variables locales en una funcion//
-            let telefono=$('#telefono').val();
-            let residencia=$('#residencia').val();
-            let correo=$('#correo').val();
-            let sexo=$('#sexo').val();
+                let telefono=$('#telefono').val();
+                let residencia=$('#residencia').val();
+                let correo=$('#correo').val();
+                let sexo=$('#sexo').val();
             let adicional=$('#adicioanl').val();
             funcion='editar_usuario';
             $.post('../controlador/usuario-controlador.php',{Id_usuario,funcion,telefono,residencia,correo,sexo,adicional},(response)=>{
